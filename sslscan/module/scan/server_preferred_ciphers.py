@@ -6,12 +6,13 @@ from sslscan.kb import CipherResult
 from sslscan.module.scan import BaseScan
 from sslscan.module.scan.server_ciphers import ServerCiphers
 
+
 class ServerPreferredCiphers(ServerCiphers):
     """
     Detect preferred server ciphers.
     """
 
-    name="server.preferred_ciphers"
+    name = "server.preferred_ciphers"
 
     def __init__(self, **kwargs):
         BaseScan.__init__(self, **kwargs)
@@ -25,7 +26,8 @@ class ServerPreferredCiphers(ServerCiphers):
             else:
                 cipher_suites = flextls.registry.tls.cipher_suites[:]
                 try:
-                    tmp1 = self._scan_cipher_suites(protocol_version, cipher_suites, limit=2)
+                    tmp1 = self._scan_cipher_suites(protocol_version,
+                                                    cipher_suites, limit=2)
                 except Timeout:
                     continue
 
